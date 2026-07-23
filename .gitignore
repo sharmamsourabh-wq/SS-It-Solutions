@@ -1,0 +1,19 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Executables
+*.exe
+*.dll
+*.obj
+*.pdb
+*.lib
+*.ilk
+*.exp
+
+# OS generated files
+.DS_Store
+Thumbs.db
