@@ -1,0 +1,14 @@
+{
+  "solar": {
+    "version": "v1.1.0",
+    "date": "July 23, 2026"
+  },
+  "bmp": {
+    "version": "v1.5.0",
+    "date": "July 21, 2026"
+  },
+  "pharma": {
+    "version": "v1.1.2",
+    "date": "June 15, 2026"
+  }
+}

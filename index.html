@@ -1,0 +1,2505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS IT Solutions - Smart Software Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0078D7;
+            --primary-light: #E0F2FE;
+            --primary-grad: linear-gradient(135deg, #0078D7 0%, #005A9E 100%);
+            --accent: #FF7B00;
+            --accent-grad: linear-gradient(135deg, #FF7B00 0%, #CC6200 100%);
+            --secondary: #0F172A;
+            --text-main: #1E293B;
+            --text-light: #64748B;
+            --bg-color: #F8FAFC;
+            --border-color: rgba(226, 232, 240, 0.8);
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 16px -6px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Georgia, serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 120, 215, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(255, 123, 0, 0.03) 0px, transparent 50%),
+                linear-gradient(rgba(241, 245, 249, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(241, 245, 249, 0.4) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* Container alignment */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-grad);
+            color: white;
+            box-shadow: 0 4px 14px rgba(0, 120, 215, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 120, 215, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* Section styles */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+
+        /* Sticky Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 8%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .logo-sub {
+            font-size: 11px;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-top: -3px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+            padding: 0;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 140px 0 60px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero-content h1 span {
+            background: var(--primary-grad);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* Product Tab Selector CSS */
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .tab-btn {
+            background: white;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-grad);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 10px rgba(0, 120, 215, 0.2);
+        }
+
+        /* Laptop Mockup Slider */
+        .laptop-mockup-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .laptop-screen {
+            background: #1e293b;
+            border-radius: 16px 16px 0 0;
+            padding: 12px 12px 0 12px;
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 16 / 10;
+            position: relative;
+            border: 2px solid #334155;
+            overflow: hidden;
+        }
+
+        /* Screen Camera */
+        .laptop-screen::before {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: #0f172a;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .laptop-base {
+            width: 112%;
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 5;
+            border-bottom: 4px solid #cbd5e1;
+        }
+
+        .laptop-base::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #94a3b8;
+            border-radius: 0 0 4px 4px;
+        }
+
+        /* Slideshow Styles inside Laptop */
+        .slideshow-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+            background: #0f172a;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            color: white;
+            font-size: 11px;
+            padding: 4px 10px;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            font-weight: 500;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 12px;
+            transition: var(--transition);
+            border-radius: 50%;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .next { right: 8px; }
+        .prev { left: 8px; }
+
+        .prev:hover, .next:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 6px;
+            width: 6px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .active-dot, .dot:hover {
+            background-color: var(--primary);
+            width: 12px;
+            border-radius: 3px;
+        }
+
+        .fade {
+            animation-name: fadeAnimation;
+            animation-duration: 0.4s;
+            height: 100%;
+        }
+
+        @keyframes fadeAnimation {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
+        }
+
+        /* Our Software Suite Card Grid */
+        .suite-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .suite-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .suite-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .suite-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .suite-card-icon {
+            font-size: 28px;
+        }
+
+        .suite-badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+        }
+
+        .badge-active {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .badge-soon {
+            background: #F1F5F9;
+            color: #64748B;
+        }
+
+        .suite-card h3 {
+            font-size: 20px;
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .suite-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .suite-features-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .suite-features-list li {
+            font-size: 13.5px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .suite-features-list li::before {
+            content: "✓";
+            color: #10B981;
+            font-weight: bold;
+        }
+
+        .suite-card-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .suite-card-buttons .btn {
+            flex: 1;
+        }
+
+        /* Coming soon card mask styling */
+        .suite-card-soon {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px dashed var(--border-color);
+        }
+
+        .suite-card-soon:hover {
+            transform: none;
+            box-shadow: var(--shadow-sm);
+            border-color: var(--border-color);
+        }
+
+        .suite-card-soon .suite-features-list li::before {
+            content: "•";
+            color: var(--text-light);
+        }
+
+        /* Latest Updates Section (Timelines) */
+        .updates-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .update-item {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .update-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .update-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .update-title h3 {
+            font-size: 18px;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .update-version {
+            background: #EFF6FF;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .update-date {
+            font-size: 12.5px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .changelog-list {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .changelog-list li {
+            font-size: 13.5px;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        /* Why Choose Section Grid */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .why-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .why-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--accent);
+        }
+
+        .why-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        .why-card h3 {
+            font-size: 18px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .why-card p {
+            font-size: 13.5px;
+            color: var(--text-light);
+        }
+
+        /* Comparison Table Container */
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 600px;
+        }
+
+        th, td {
+            padding: 16px 20px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: #F8FAFC;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: #10B981;
+            font-weight: bold;
+        }
+
+        .cross-icon {
+            color: #EF4444;
+            font-weight: bold;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .stars {
+            color: #FBBF24;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .testimonial-card p {
+            font-size: 14px;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .client-details h4 {
+            font-size: 14.5px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .client-details span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition);
+            width: 320px;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-md);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .popular-badge {
+            background: var(--primary-grad);
+            color: white;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .pricing-tier {
+            font-size: 16px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .pricing-price {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 24px;
+        }
+
+        .pricing-price span {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+        }
+
+        /* Download Center Center Grid */
+        .dl-table-wrapper {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+        }
+
+        .dl-table th, .dl-table td {
+            padding: 16px 20px;
+            font-size: 14px;
+        }
+
+        .dl-software-name {
+            font-weight: 600;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Contact Section Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 50px;
+        }
+
+        .contact-details-box {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-details-item {
+            display: flex;
+            gap: 16px;
+        }
+
+        .contact-details-icon {
+            font-size: 24px;
+        }
+
+        .contact-details-content h3 {
+            font-size: 16px;
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .contact-details-content p {
+            font-size: 14.5px;
+            color: var(--text-light);
+        }
+
+        .contact-details-content a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .map-card {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            height: 200px;
+            margin-top: 15px;
+        }
+
+        /* Contact Form */
+        .contact-form-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 13.5px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-color);
+            font-size: 14.5px;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 120, 215, 0.15);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 80px 0 40px;
+            border-top: 1px solid #1e293b;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #1e293b;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            font-size: 13.5px;
+            color: #64748b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: white;
+        }
+
+        /* Modal Overlays CSS Hack */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+        }
+
+        .modal-overlay.active,
+        .modal-overlay:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-overlay:target .modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-backdrop-close {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: default;
+            z-index: 1;
+        }
+
+        .modal-card {
+            background: white;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border-color);
+            z-index: 2;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #F1F5F9;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .modal-close:hover {
+            background: #E2E8F0;
+            color: var(--text-main);
+            transform: rotate(90deg);
+        }
+
+        .modal-header h3 {
+            font-size: 24px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .modal-header p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-number {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            background: #F0F9FF;
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(0, 120, 215, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .modal-number a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .call-btn {
+            background: var(--primary-grad);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 120, 215, 0.2);
+        }
+
+        .call-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 120, 215, 0.35);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+        }
+
+        /* Video Modal Styles */
+        .video-modal-card {
+            max-width: 800px;
+            width: 95%;
+            padding: 55px 15px 15px 15px;
+            background: #0F172A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .video-container video,
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Mobile Responsiveness Media Queries */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .menu-toggle.open-btn {
+                display: flex;
+            }
+
+            .menu-toggle.close-btn {
+                display: none;
+            }
+
+            #nav-menu:target ~ .menu-toggle.open-btn {
+                display: none;
+            }
+
+            #nav-menu:target ~ .menu-toggle.close-btn {
+                display: flex;
+            }
+
+            #nav-menu:target ~ .menu-toggle.close-btn span:nth-child(1) {
+                transform: translateY(9px) rotate(45deg);
+                background-color: var(--primary);
+            }
+
+            #nav-menu:target ~ .menu-toggle.close-btn span:nth-child(2) {
+                opacity: 0;
+            }
+
+            #nav-menu:target ~ .menu-toggle.close-btn span:nth-child(3) {
+                transform: translateY(-9px) rotate(-45deg);
+                background-color: var(--primary);
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: calc(100% - 10px);
+                right: 5%;
+                width: 180px;
+                height: auto;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px;
+                gap: 0;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(226, 232, 240, 0.8);
+                opacity: 0;
+                transform: translateY(-10px);
+                pointer-events: none;
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 100;
+            }
+
+            .nav-menu:target {
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 16px;
+                padding: 8px 0;
+                border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Hero Section */
+            .hero {
+                padding: 120px 0 40px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+                line-height: 1.25;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            /* Sections spacing */
+            section {
+                padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            /* Comparison table */
+            .comparison-table-wrapper {
+                margin: 0 -12px;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+
+            /* Grid forms */
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-form-card {
+                padding: 24px;
+            }
+
+            /* Video Modal Adjustments */
+            .modal-card {
+                padding: 30px 20px;
+            }
+
+            .modal-header h3 {
+                font-size: 20px;
+            }
+
+            .modal-number {
+                font-size: 18px;
+                padding: 10px 20px;
+            }
+
+            #video-modal-close-btn {
+                top: 8px;
+                right: 10px;
+                width: 30px;
+                height: 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <nav>
+        <a href="#" class="logo-container">
+            <div class="logo">SS IT <span>Solutions</span></div>
+            <div class="logo-sub">Powered By Sourabh</div>
+        </a>
+        <div class="nav-menu" id="nav-menu">
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#products">Products</a>
+                <a href="#updates">Updates</a>
+                <a href="#pricing">Free Trial</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <a href="#nav-menu" class="menu-toggle open-btn" aria-label="Open Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+        <a href="#" class="menu-toggle close-btn" aria-label="Close Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>One Platform. Multiple <span>Business Software</span> Solutions.</h1>
+                    <p>Discover powerful desktop applications tailored for Billing, ERP, Pharmacy, Retail, Healthcare and Inventory Management. Make operations simple, secure, and fast.</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn btn-primary">Explore Products</a>
+                        <a href="#demo" class="btn btn-secondary">View Live Demo</a>
+                    </div>
+                </div>
+                <div class="laptop-mockup-container" style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="product-tabs">
+                        <button class="tab-btn active" onclick="switchProduct('solar')">☀️ Solar ERP</button>
+                        <button class="tab-btn" onclick="switchProduct('bmp')">📦 Bill Master Pro</button>
+                    </div>
+                    <div class="laptop-screen">
+                        <!-- Slideshow Container inside screen -->
+                        <div class="slideshow-container">
+                            <!-- Solar slides -->
+                            <div class="slide slide-solar fade">
+                                <img src="assets/solar_login.png" alt="Solar Quotation & Billing System Login">
+                                <div class="slide-caption">Secure Admin Login Screen</div>
+                            </div>
+                            <div class="slide slide-solar fade">
+                                <img src="assets/solar_dashboard.png" alt="Solar Quotation & Billing System Dashboard">
+                                <div class="slide-caption">Dashboard - Business Overview</div>
+                            </div>
+                            <div class="slide slide-solar fade">
+                                <img src="assets/solar_billing.png" alt="Solar Quotation & Billing System Invoicing">
+                                <div class="slide-caption">Quotation & Billing - Invoicing</div>
+                            </div>
+                            <div class="slide slide-solar fade">
+                                <img src="assets/solar_item_master.png" alt="Solar Quotation & Billing System Product Master">
+                                <div class="slide-caption">Product Master - Inventory Items</div>
+                            </div>
+                            <div class="slide slide-solar fade">
+                                <img src="assets/solar_customer_master.png" alt="Solar Quotation & Billing System Customer Master">
+                                <div class="slide-caption">Customer Master - Manage Clients</div>
+                            </div>
+
+                            <!-- Bill Master Pro slides -->
+                            <div class="slide slide-bmp fade">
+                                <img src="assets/bmp_login.png" alt="Bill Master Pro Login">
+                                <div class="slide-caption">Secure Admin Login Screen</div>
+                            </div>
+                            <div class="slide slide-bmp fade">
+                                <img src="assets/bmp_dashboard.png" alt="Bill Master Pro Dashboard">
+                                <div class="slide-caption">Dashboard - Business Overview</div>
+                            </div>
+                            <div class="slide slide-bmp fade">
+                                <img src="assets/bmp_billing.png" alt="Bill Master Pro Billing">
+                                <div class="slide-caption">Billing - Fast GST Invoicing</div>
+                            </div>
+                            <div class="slide slide-bmp fade">
+                                <img src="assets/bmp_item_master.png" alt="Bill Master Pro Item Master">
+                                <div class="slide-caption">Item Master - Product Inventory</div>
+                            </div>
+                            <div class="slide slide-bmp fade">
+                                <img src="assets/bmp_customer_master.png" alt="Bill Master Pro Customer Master">
+                                <div class="slide-caption">Customer Master - Manage Clients</div>
+                            </div>
+
+                            <!-- Navigation Arrows -->
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                        
+                        <!-- Indicator Dots -->
+                        <div class="slideshow-dots">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                        </div>
+                    </div>
+                    <div style="position: absolute; bottom: -14px; width: 100%; display: flex; justify-content: center; left: 0;">
+                        <div class="laptop-base"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Software Suite -->
+    <section id="products" style="background-color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Software Suite</h2>
+                <p>Explore complete ERP and utility tools engineered for reliability, automation, and offline productivity.</p>
+            </div>
+            
+            <div class="suite-grid">
+                <!-- Software Card 1 -->
+                <div class="suite-card">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">☀️</span>
+                        <span class="suite-badge badge-active">Active</span>
+                    </div>
+                    <h3>Solar Quotation & Billing</h3>
+                    <p>Complete software solution for Solar installation and trading businesses to manage customer quotations, GST billing, payments, and stock inventory.</p>
+                    <ul class="suite-features-list">
+                        <li>Quotation & Invoicing</li>
+                        <li>Customer Master</li>
+                        <li>Product & Price Master</li>
+                        <li>Payment Tracker</li>
+                        <li>Inventory & Stock Ledger</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#demo" class="btn btn-secondary btn-sm">Learn More</a>
+                        <a href="#contact" class="btn btn-primary btn-sm">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 2 -->
+                <div class="suite-card">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">📦</span>
+                        <span class="suite-badge badge-active">Active</span>
+                    </div>
+                    <h3>Bill Master Pro</h3>
+                    <p>Complete GST Billing, invoicing, and barcode-ready stock inventory management software built for small and medium shops.</p>
+                    <ul class="suite-features-list">
+                        <li>GST Billing</li>
+                        <li>Barcode Billing</li>
+                        <li>Stock Management</li>
+                        <li>Customer Master</li>
+                        <li>Sales Reports</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#demo" class="btn btn-secondary btn-sm">Learn More</a>
+                        <a href="#contact" class="btn btn-primary btn-sm">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 2 -->
+                <div class="suite-card">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">💊</span>
+                        <span class="suite-badge badge-active">Active</span>
+                    </div>
+                    <h3>Smart Pharma ERP</h3>
+                    <p>Advanced drug inventory and batch traceability system for chemists and pharmacies. Packed with expiry alert tools.</p>
+                    <ul class="suite-features-list">
+                        <li>Medicine Inventory</li>
+                        <li>Batch Management</li>
+                        <li>Expiry Alerts</li>
+                        <li>Purchase & Sales</li>
+                        <li>GST Billing</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#demo" class="btn btn-secondary btn-sm">Learn More</a>
+                        <a href="#contact" class="btn btn-primary btn-sm">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 3 (Coming Soon) -->
+                <div class="suite-card suite-card-soon">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">🏥</span>
+                        <span class="suite-badge badge-soon">Coming Soon</span>
+                    </div>
+                    <h3>Hospital ERP</h3>
+                    <p>Designed to handle patients registers, bed management, billing, doctors allocation, and pharmacy module integration.</p>
+                    <ul class="suite-features-list">
+                        <li>Patient Register</li>
+                        <li>OPD / IPD Records</li>
+                        <li>Doctor Scheduling</li>
+                        <li>Discharge Summary</li>
+                        <li>Diagnostics Ledger</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#contact" class="btn btn-secondary btn-sm" style="width: 100%;">Inquire Product</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 4 (Coming Soon) -->
+                <div class="suite-card suite-card-soon">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">🏫</span>
+                        <span class="suite-badge badge-soon">Coming Soon</span>
+                    </div>
+                    <h3>School ERP</h3>
+                    <p>Total management module for student registrations, attendance tracker, fees collector, schedules, and exam marks cards.</p>
+                    <ul class="suite-features-list">
+                        <li>Student Database</li>
+                        <li>Fees Collector</li>
+                        <li>Schedules Tracker</li>
+                        <li>Exams Grading</li>
+                        <li>Staff Records</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#contact" class="btn btn-secondary btn-sm" style="width: 100%;">Inquire Product</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 5 (Coming Soon) -->
+                <div class="suite-card suite-card-soon">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">🍽</span>
+                        <span class="suite-badge badge-soon">Coming Soon</span>
+                    </div>
+                    <h3>Restaurant ERP</h3>
+                    <p>Touchscreen POS software optimized for rapid tables billing, kitchen order tickets (KOT), recipe inventory, and home deliveries.</p>
+                    <ul class="suite-features-list">
+                        <li>KOT Printing</li>
+                        <li>Table Layout Billing</li>
+                        <li>Recipe Management</li>
+                        <li>Home Delivery Sync</li>
+                        <li>Splits & Multi-pay</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#contact" class="btn btn-secondary btn-sm" style="width: 100%;">Inquire Product</a>
+                    </div>
+                </div>
+
+                <!-- Software Card 6 (Coming Soon) -->
+                <div class="suite-card suite-card-soon">
+                    <div class="suite-card-header">
+                        <span class="suite-card-icon">🏪</span>
+                        <span class="suite-badge badge-soon">Coming Soon</span>
+                    </div>
+                    <h3>Retail ERP</h3>
+                    <p>Multi-counter retail point of sale billing system for supermarkets, garment showrooms, and hardware stores.</p>
+                    <ul class="suite-features-list">
+                        <li>Multi-counter POS</li>
+                        <li>Promotions Engine</li>
+                        <li>Customer Loyalty</li>
+                        <li>Barcode Generator</li>
+                        <li>Suppliers Ledger</li>
+                    </ul>
+                    <div class="suite-card-buttons">
+                        <a href="#contact" class="btn btn-secondary btn-sm" style="width: 100%;">Inquire Product</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Updates -->
+    <section id="updates">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Releases & Updates</h2>
+                <p>We are continuously building features to improve your software stability and support tax regulations changes.</p>
+            </div>
+            
+            <div class="updates-container">
+                <!-- Update 1 -->
+                <div class="update-item">
+                    <div class="update-header">
+                        <div class="update-title">
+                            <h3>Solar Quotation & Billing</h3>
+                            <span class="update-version" id="solar-version">v1.1.0</span>
+                        </div>
+                        <span class="update-date" id="solar-date">Released: July 23, 2026</span>
+                    </div>
+                    <ul class="changelog-list">
+                        <li>Added smart quotation generator with customizable discount and GST fields.</li>
+                        <li>Designed dynamic dashboard counters tracking total customers, quotations, and bills.</li>
+                        <li>Implemented complete customer master database with search, edit, and deletion logic.</li>
+                        <li>Built interactive payments, inventory tracker, and sales reports modules.</li>
+                    </ul>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <a href="https://drive.google.com/drive/folders/1p_KbcgWgFMaqKIO-lM9oCIXrlGvt6kzE?usp=sharing" class="btn btn-primary btn-sm" target="_blank">Download Update (.exe)</a>
+                    </div>
+                </div>
+
+                <!-- Update 2 -->
+                <div class="update-item">
+                    <div class="update-header">
+                        <div class="update-title">
+                            <h3>Bill Master Pro</h3>
+                            <span class="update-version" id="bmp-version">v1.5.0</span>
+                        </div>
+                        <span class="update-date" id="bmp-date">Released: July 21, 2026</span>
+                    </div>
+                    <ul class="changelog-list">
+                        <li>Added lightning-fast barcode scanner auto-focus algorithms.</li>
+                        <li>Upgraded print template styles supporting standard 3-inch POS thermal receipt paper.</li>
+                        <li>Optimized local SQLite database index settings to load 10,000+ items instantly.</li>
+                        <li>Fixed tax calculation minor roundoffs on multi-item bills.</li>
+                    </ul>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <a href="assets/Bill_Master_Pro/Bill_Master_Pro_Update.exe" class="btn btn-primary btn-sm" download>Download Update (.exe)</a>
+                    </div>
+                </div>
+
+                <!-- Update 3 -->
+                <div class="update-item">
+                    <div class="update-header">
+                        <div class="update-title">
+                            <h3>Smart Pharma ERP</h3>
+                            <span class="update-version" id="pharma-version">v1.1.2</span>
+                        </div>
+                        <span class="update-date" id="pharma-date">Released: June 15, 2026</span>
+                    </div>
+                    <ul class="changelog-list">
+                        <li>Implemented batch code lookup tables to automatically flag expiring stocks within 90 days.</li>
+                        <li>Added quick shortcut keys `Ctrl + Shift + P` for fast purchase entries.</li>
+                        <li>Updated medicine master database supporting 5,000+ pre-filled generic salts.</li>
+                    </ul>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <a href="assets/Smart_Pharma_ERP_Update.exe/SmartPharmaERP_Setup.exe" class="btn btn-primary btn-sm" download>Download Update (.exe)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="why" style="background-color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose SS IT Solutions?</h2>
+                <p>Our desktop applications offer high performance without complex IT servers installation.</p>
+            </div>
+            
+            <div class="why-grid">
+                <div class="why-card">
+                    <span class="why-icon">⚡</span>
+                    <h3>Fast Performance</h3>
+                    <p>Native desktop compilation ensures zero lag or loading delays while billing counters are busy.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">💾</span>
+                    <h3>Offline Software</h3>
+                    <p>Zero internet dependency. Your data stays 100% locally saved inside your store device database.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">📞</span>
+                    <h3>Lifetime Support</h3>
+                    <p>Dedicated telephone, WhatsApp, and remote desktop setup assistance available whenever you need.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">🔄</span>
+                    <h3>Free Updates</h3>
+                    <p>Receive regular security logs improvements, bug-fixes, and tax compliance updates without extra fees.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">🔒</span>
+                    <h3>Secure Database</h3>
+                    <p>Fully encrypted local database keeps your business accounts reports protected from online leaks.</p>
+                </div>
+                <div class="why-card">
+                    <span class="why-icon">💻</span>
+                    <h3>Easy Installation</h3>
+                    <p>One-click lightweight installation wizard gets your shop running billing counters in minutes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="comparison">
+        <div class="container">
+            <div class="section-header">
+                <h2>Feature Comparison</h2>
+                <p>Compare modules across our active desktop configurations to choose the best option for your storefront.</p>
+            </div>
+            
+            <div class="comparison-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software Module Features</th>
+                            <th>Solar Quotation & Billing</th>
+                            <th>Smart Pharma ERP</th>
+                            <th>Enterprise Suite (ERP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Quick Point of Sale (POS) Invoicing</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                        </tr>
+                        <tr>
+                            <td>Barcode Printing & Scanner Support</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                        </tr>
+                        <tr>
+                            <td>Batch Expiry tracking alerts</td>
+                            <td><span class="cross-icon">✗</span> Not Needed</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                        </tr>
+                        <tr>
+                            <td>Automatic GSTR-1 & GSTR-2 Export</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                            <td><span class="check-icon">✓</span> Included</td>
+                        </tr>
+                        <tr>
+                            <td>Multi-Counter Database Sync</td>
+                            <td><span class="cross-icon">✗</span> Single Counter</td>
+                            <td><span class="cross-icon">✗</span> Single Counter</td>
+                            <td><span class="check-icon">✓</span> LAN/Cloud Sync</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Bill Format designer</td>
+                            <td><span class="cross-icon">✗</span> Presets Only</td>
+                            <td><span class="cross-icon">✗</span> Presets Only</td>
+                            <td><span class="check-icon">✓</span> Unlimited formats</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" style="background-color: white;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Loved by Local Store Owners</h2>
+                <p>See how business owners run their retail and wholesale billing with SS IT Solutions.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"We compile our 200+ medicines sale bills daily on Smart Pharma. It runs instantly and batched expiry lists prevent loss."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">RK</div>
+                        <div class="client-details">
+                            <h4>Rajesh Kumar</h4>
+                            <span>Owner, Krishna Medicos</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"Preparing quotations used to take hours. Solar Quotation & Billing lets us generate estimates, manage payments, and complete inventory tracking in seconds."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">AS</div>
+                        <div class="client-details">
+                            <h4>Amit Sharma</h4>
+                            <span>Manager, Sharma Solar Systems</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"The lifetime support team guided us through our barcode configuration remotely. Outstanding and responsive technical services."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">SG</div>
+                        <div class="client-details">
+                            <h4>Sanjay Gupta</h4>
+                            <span>Owner, Gupta Wholesale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial Section -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get Started with a 45-Day Free Trial</h2>
+                <p>Install and test the complete software features on your local machine before buying.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <!-- Plan 1 -->
+                <div class="pricing-card" style="border: 2px solid var(--primary); box-shadow: var(--shadow-md);">
+                    <div class="popular-badge" style="background: var(--primary-grad); color: white;">Try for Free</div>
+                    <div class="pricing-tier" style="margin-top: 10px;">Free Trial</div>
+                    <div class="pricing-price">₹0 <span>/ 45 Days</span></div>
+                    <ul class="pricing-features">
+                        <li>Access all premium modules</li>
+                        <li>Install on single PC</li>
+                        <li>Standard preset bill style</li>
+                        <li>Export GSTR tax reports</li>
+                        <li>Self-guided installation support</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Request Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Support -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch & Remote Support</h2>
+                <p>Have a question about app installation, customized invoice formats, or license codes? Let's connect.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-details-box">
+                    <div class="contact-details-item">
+                        <span class="contact-details-icon">📞</span>
+                        <div class="contact-details-content">
+                            <h3>Phone & WhatsApp</h3>
+                            <p><a href="#contact-modal">+91 6263522005</a></p>
+                            <p>Support Hours: 10:00 AM to 7:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-details-item">
+                        <span class="contact-details-icon">📧</span>
+                        <div class="contact-details-content">
+                            <h3>Email Support</h3>
+                            <p><a href="mailto:sharmamsourabh@gmail.com">sharmamsourabh@gmail.com</a></p>
+                            <p>We usually reply to queries within 24 hours.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <form action="https://formsubmit.co/sharmamsourabh@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Software Support Inquiry - SS IT Solutions">
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="software">Selected Software</label>
+                            <select id="software" name="software" class="form-control" required>
+                                <option value="Solar Quotation & Billing">Solar Quotation & Billing (Solar ERP)</option>
+                                <option value="Smart Pharma ERP">Smart Pharma ERP (Pharmacy Management)</option>
+                                <option value="Other ERP">Other ERP / ERP Coming Soon</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Inquiry Message</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="Tell us about your business or requirement..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Support Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="grid-column: span 1.5;">
+                    <div class="logo" style="color: white; margin-bottom: 15px;">SS IT <span>Solutions</span></div>
+                    <p style="color: #94a3b8; font-size: 14px; line-height: 1.6; max-width: 280px;">Powering businesses with smart, native, and reliable desktop software utilities built for offline performance.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#products">Solar Quotation & Billing</a></li>
+                        <li><a href="#products">Smart Pharma ERP</a></li>
+                        <li><a href="#products">Coming Soon Suites</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company & Updates</h3>
+                    <ul>
+                        <li><a href="#updates">Latest Updates</a></li>
+                        <li><a href="#privacy-policy-modal">Privacy Policy</a></li>
+                        <li><a href="#terms-conditions-modal">Terms & Condition</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#contact">Contact Support</a></li>
+                        <li><a href="#support-policy-modal">Support Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SS IT Solutions. Powered by Sourabh. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="javascript:void(0)">Facebook</a>
+                    <a href="javascript:void(0)">LinkedIn</a>
+                    <a href="https://wa.me/916263522005" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terms & Conditions Modal -->
+    <div id="terms-conditions-modal" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="Close modal"></a>
+        <div class="modal-card" style="max-width: 650px; text-align: left; padding: 40px 30px;">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header" style="margin-bottom: 20px;">
+                <h3 style="font-size: 24px; color: var(--secondary); font-weight: 700; margin-bottom: 8px;">Terms & Conditions</h3>
+                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 0;"><strong>Effective Date:</strong> July 21, 2026</p>
+            </div>
+            
+            <div class="modal-body-content" style="max-height: 380px; overflow-y: auto; padding-right: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text-main);">
+                <p style="margin-bottom: 15px;">Welcome to <strong>SS IT Solutions</strong>. By downloading, installing, or using our software products, including <strong>Solar Quotation & Billing</strong>, <strong>Smart Pharma ERP</strong>, and other applications developed by SS IT Solutions, you agree to the following terms and conditions.</p>
+                
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Software License</h4>
+                <p style="margin-bottom: 15px;">You are granted a non-exclusive, non-transferable license to use the software according to your purchased plan.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Ownership</h4>
+                <p style="margin-bottom: 15px;">All software, source code, logos, graphics, and documentation remain the intellectual property of SS IT Solutions.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Restrictions</h4>
+                <p style="margin-bottom: 10px;">You may not:</p>
+                <ul style="list-style: none; margin-bottom: 15px; padding-left: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <li>• Copy or redistribute the software without permission.</li>
+                    <li>• Reverse engineer or modify the software.</li>
+                    <li>• Sell or rent the software to others.</li>
+                    <li>• Share your license key with unauthorized users.</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Software Updates</h4>
+                <p style="margin-bottom: 15px;">We may release updates, bug fixes, and new features at any time.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">User Responsibility</h4>
+                <p style="margin-bottom: 10px;">You are responsible for:</p>
+                <ul style="list-style: none; margin-bottom: 15px; padding-left: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <li>• Maintaining backups of your data.</li>
+                    <li>• Protecting your license key.</li>
+                    <li>• Using the software legally.</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Limitation of Liability</h4>
+                <p style="margin-bottom: 15px;">SS IT Solutions is not responsible for any indirect, incidental, or consequential loss, including data loss, business interruption, or financial loss arising from the use of the software.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Termination</h4>
+                <p style="margin-bottom: 15px;">We reserve the right to suspend or terminate licenses found to be used fraudulently or in violation of these terms.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">Contact</h4>
+                <p>
+                    Email: <a href="mailto:sharmamsourabh@gmail.com" style="color: var(--primary); text-decoration: none;">sharmamsourabh@gmail.com</a><br>
+                    Phone: <strong><a href="tel:+916263522005" style="color: inherit; text-decoration: none;">+91 6263522005</a></strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-policy-modal" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="Close modal"></a>
+        <div class="modal-card" style="max-width: 650px; text-align: left; padding: 40px 30px;">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header" style="margin-bottom: 20px;">
+                <h3 style="font-size: 24px; color: var(--secondary); font-weight: 700; margin-bottom: 8px;">Privacy Policy</h3>
+                <p style="font-size: 13px; color: var(--text-light); margin-bottom: 0;"><strong>Effective Date:</strong> July 21, 2026</p>
+            </div>
+            
+            <div class="modal-body-content" style="max-height: 380px; overflow-y: auto; padding-right: 10px; font-size: 13.5px; line-height: 1.6; color: var(--text-main);">
+                <p style="margin-bottom: 15px;">Welcome to <strong>SS IT Solutions</strong>. Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our software products, including <strong>Solar Quotation & Billing</strong>, <strong>Smart Pharma ERP</strong>, and other applications developed by SS IT Solutions.</p>
+                
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">1. Information We Collect</h4>
+                <p style="margin-bottom: 10px;">Our software may collect the following information:</p>
+                <ul style="list-style: none; margin-bottom: 15px; padding-left: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <li>• Customer Name</li>
+                    <li>• Business Name</li>
+                    <li>• Contact Number</li>
+                    <li>• Email Address</li>
+                    <li>• Billing and Invoice Data</li>
+                    <li>• Product and Inventory Information</li>
+                    <li>• License Activation Details</li>
+                    <li>• Device Information (only for software activation)</li>
+                </ul>
+                <p style="margin-bottom: 15px;">We do <strong>not</strong> collect personal files, passwords, banking information, or private documents from your computer.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">2. How We Use Your Information</h4>
+                <p style="margin-bottom: 10px;">The information collected is used only to:</p>
+                <ul style="list-style: none; margin-bottom: 15px; padding-left: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <li>• Activate and verify your software license.</li>
+                    <li>• Provide software updates.</li>
+                    <li>• Improve software performance.</li>
+                    <li>• Deliver technical support.</li>
+                    <li>• Resolve software-related issues.</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">3. Data Security</h4>
+                <p style="margin-bottom: 15px;">We take reasonable technical and administrative measures to protect your data from unauthorized access, loss, or misuse.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">4. Data Storage</h4>
+                <p style="margin-bottom: 10px;">Business data created using our software is stored on your own computer or database unless you choose to use a cloud backup service.</p>
+                <p style="margin-bottom: 15px;">SS IT Solutions does not access or copy your business records without your permission.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">5. Software Updates</h4>
+                <p style="margin-bottom: 15px;">Our software may periodically check for new versions to provide security updates, bug fixes, and new features.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">6. Third-Party Services</h4>
+                <p style="margin-bottom: 10px;">Our software may use trusted third-party services such as:</p>
+                <ul style="list-style: none; margin-bottom: 15px; padding-left: 10px; display: flex; flex-direction: column; gap: 4px;">
+                    <li>• Windows Operating System</li>
+                    <li>• Microsoft SQL Server</li>
+                    <li>• Google Drive (optional backup)</li>
+                    <li>• Email Services</li>
+                    <li>• WhatsApp Sharing Features</li>
+                </ul>
+                <p style="margin-bottom: 15px;">These services have their own privacy policies.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">7. Customer Support</h4>
+                <p style="margin-bottom: 15px;">When you contact us for support, you may voluntarily share screenshots, database backups, or log files. These files are used only to diagnose and resolve your issue.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">8. Data Sharing</h4>
+                <p style="margin-bottom: 15px;">We do not sell, rent, or share your personal or business information with third parties except where required by law.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">9. Children's Privacy</h4>
+                <p style="margin-bottom: 15px;">Our software is intended for business use and is not designed for children under the age of 13.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">10. Changes to This Policy</h4>
+                <p style="margin-bottom: 15px;">We may update this Privacy Policy from time to time. The latest version will always be available on our website.</p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin: 15px 0 8px;">11. Contact Us</h4>
+                <p style="margin-bottom: 5px;"><strong>SS IT Solutions</strong></p>
+                <p>
+                    Email: <a href="mailto:sharmamsourabh@gmail.com" style="color: var(--primary); text-decoration: none;">sharmamsourabh@gmail.com</a><br>
+                    Phone: <strong><a href="tel:+916263522005" style="color: inherit; text-decoration: none;">+91 6263522005</a></strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Policy Modal -->
+    <div id="support-policy-modal" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="Close modal"></a>
+        <div class="modal-card" style="max-width: 600px; text-align: left; padding: 40px 30px;">
+            <a href="#" class="modal-close">&times;</a>
+            <div class="modal-header" style="margin-bottom: 20px;">
+                <h3 style="font-size: 24px; color: var(--secondary); font-weight: 700; margin-bottom: 8px;">Support Policy</h3>
+                <p style="font-size: 14.5px; color: var(--text-light); line-height: 1.5; margin-bottom: 0;">SS IT Solutions provides technical support for all genuine licensed customers.</p>
+            </div>
+            
+            <div class="modal-body-content" style="max-height: 380px; overflow-y: auto; padding-right: 10px;">
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin-bottom: 10px;">Support Includes:</h4>
+                <ul style="list-style: none; margin-bottom: 20px; font-size: 13.5px; color: var(--text-main); display: flex; flex-direction: column; gap: 8px;">
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Software installation assistance</li>
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Activation support</li>
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Bug fixing guidance</li>
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Database troubleshooting support</li>
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Software update assistance</li>
+                    <li style="display: flex; gap: 8px; align-items: center;"><span style="color: #10B981; font-weight: bold;">✓</span> Basic training and setup help</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin-bottom: 5px;">Support Hours:</h4>
+                <p style="font-size: 13.5px; color: var(--text-main); margin-bottom: 20px;">
+                    Monday – Saturday<br>
+                    <strong>10:00 AM – 7:00 PM (IST)</strong>
+                </p>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin-bottom: 10px;">Support Channels:</h4>
+                <ul style="list-style: none; margin-bottom: 20px; font-size: 13.5px; color: var(--text-main); display: flex; flex-direction: column; gap: 6px;">
+                    <li>• <a href="https://wa.me/916263522005" target="_blank" style="color: inherit; text-decoration: none;">WhatsApp</a></li>
+                    <li>• Phone Call</li>
+                    <li>• Email</li>
+                    <li>• Remote Desktop Support (when required)</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin-bottom: 5px;">Paid Services (Additional Charges):</h4>
+                <p style="font-size: 12.5px; color: var(--text-light); margin-bottom: 8px;">The following services may incur additional charges:</p>
+                <ul style="list-style: none; margin-bottom: 20px; font-size: 13.5px; color: var(--text-main); display: flex; flex-direction: column; gap: 6px;">
+                    <li>• Custom software development</li>
+                    <li>• New feature development</li>
+                    <li>• Data migration</li>
+                    <li>• On-site installation</li>
+                    <li>• Custom reports</li>
+                </ul>
+
+                <h4 style="font-size: 15px; color: var(--secondary); font-weight: 600; margin-bottom: 5px;">Contact:</h4>
+                <p style="font-size: 13.5px; color: var(--text-main);">
+                    Phone: <strong><a href="tel:+916263522005" style="color: inherit; text-decoration: none;">+91 6263522005</a></strong><br>
+                    Email: <a href="mailto:sharmamsourabh@gmail.com" style="color: var(--primary); text-decoration: none;">sharmamsourabh@gmail.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Options Modal CSS Target Hack -->
+    <div id="contact-modal" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="Close modal"></a>
+        <div class="modal-card">
+            <a href="#" class="modal-close" id="modal-close-btn">&times;</a>
+            <div class="modal-header">
+                <h3>Choose Contact Method</h3>
+                <p>How would you like to connect with SS IT Solutions?</p>
+            </div>
+            <div class="modal-number"><a href="tel:+916263522005">+91 6263522005</a></div>
+            <div class="modal-actions">
+                <a href="tel:+916263522005" class="modal-btn call-btn">
+                    <span class="btn-icon">📞</span>
+                    <span class="btn-text">Call Now</span>
+                </a>
+                <a href="https://wa.me/916263522005" target="_blank" class="modal-btn whatsapp-btn">
+                    <span class="btn-icon">💬</span>
+                    <span class="btn-text">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Demo Modal -->
+    <div id="video-modal" class="modal-overlay">
+        <a href="#" class="modal-backdrop-close" aria-label="Close modal"></a>
+        <div class="modal-card video-modal-card">
+            <a href="#" class="modal-close" id="video-modal-close-btn">&times;</a>
+            <div class="video-container">
+                <!-- if using local video file (place demo.mp4 inside assets folder) -->
+                <video id="demo-video" controls playsinline>
+                    <source src="assets/demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <!-- if using youtube instead, uncomment below iframe and comment out video tag above -->
+                <!--
+                <iframe id="demo-youtube" width="100%" height="100%" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Contact Modal Logic
+        const btnCallWhatsapp = document.getElementById('btn-call-whatsapp');
+        const contactModal = document.getElementById('contact-modal');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function openModal() {
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        if (btnCallWhatsapp) {
+            btnCallWhatsapp.addEventListener('click', openModal);
+        }
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeModal);
+        }
+
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Slideshow Logic
+        let slideIndex = 1;
+        let currentProduct = 'solar'; // Default product
+        showSlides(slideIndex);
+
+        // Auto slideshow rotation
+        let slideInterval = setInterval(() => {
+            plusSlides(1);
+        }, 5000); // changes every 5 seconds
+
+        function plusSlides(n) {
+            clearInterval(slideInterval); // Reset timer on user interaction
+            showSlides(slideIndex += n);
+            slideInterval = setInterval(() => {
+                plusSlides(1);
+            }, 5000);
+        }
+
+        function currentSlide(n) {
+            clearInterval(slideInterval); // Reset timer on user interaction
+            showSlides(slideIndex = n);
+            slideInterval = setInterval(() => {
+                plusSlides(1);
+            }, 5000);
+        }
+
+        function switchProduct(prod) {
+            clearInterval(slideInterval);
+            currentProduct = prod;
+            slideIndex = 1;
+            
+            // Update active tab button style
+            let tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Check if event is triggered by click
+            if (window.event && window.event.currentTarget) {
+                window.event.currentTarget.classList.add('active');
+            } else {
+                // fallback
+                let activeBtn = Array.from(tabButtons).find(btn => btn.getAttribute('onclick').includes(prod));
+                if (activeBtn) activeBtn.classList.add('active');
+            }
+
+            showSlides(slideIndex);
+            
+            slideInterval = setInterval(() => {
+                plusSlides(1);
+            }, 5000);
+        }
+
+        function showSlides(n) {
+            let i;
+            // Get all slides and filter by current product class
+            let allSlides = document.getElementsByClassName("slide");
+            let slides = document.getElementsByClassName("slide-" + currentProduct);
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            
+            // Hide all slides
+            for (i = 0; i < allSlides.length; i++) {
+                allSlides[i].style.display = "none";  
+            }
+            
+            // Reset all dots
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active-dot", "");
+            }
+            
+            // Show active slide for current product
+            if (slides[slideIndex-1]) {
+                slides[slideIndex-1].style.display = "block";  
+            }
+            if (dots[slideIndex-1]) {
+                dots[slideIndex-1].className += " active-dot";
+            }
+        }
+
+        // Video Modal Logic (JS fallback to handle media stop)
+        const btnDemo = document.querySelector('a[href="#demo"]');
+        const videoModal = document.getElementById('video-modal');
+        const videoModalCloseBtn = document.getElementById('video-modal-close-btn');
+        const demoVideo = document.getElementById('demo-video');
+
+        function openVideoModal(e) {
+            e.preventDefault();
+            videoModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            if (demoVideo) {
+                demoVideo.play().catch(err => console.log("Autoplay blocked by browser."));
+            }
+        }
+
+        function closeVideoModal() {
+            videoModal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Pause local video if playing
+            if (demoVideo) {
+                demoVideo.pause();
+                demoVideo.currentTime = 0;
+            }
+            
+            // Reload youtube iframe to stop playback if present
+            const iframe = document.getElementById('demo-youtube');
+            if (iframe) {
+                const src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
+            }
+        }
+
+        if (btnDemo) {
+            btnDemo.addEventListener('click', openVideoModal);
+        }
+        if (videoModalCloseBtn) {
+            videoModalCloseBtn.addEventListener('click', closeVideoModal);
+        }
+
+        videoModal.addEventListener('click', (e) => {
+            if (e.target === videoModal) {
+                closeVideoModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                closeVideoModal();
+            }
+        });
+
+        // AJAX Form Submission to bypass local file:/// origin check in FormSubmit
+        const contactForm = document.querySelector('form[action*="formsubmit.co"]');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                const formData = new FormData(contactForm);
+
+                fetch(contactForm.action.replace('https://formsubmit.co/', 'https://formsubmit.co/ajax/'), {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    if (data.success === "true" || data.success === true) {
+                        alert('Thank you! Your inquiry has been sent successfully. If this is your first time, please check your email (including Spam folder) to activate the form.');
+                        contactForm.reset();
+                    } else {
+                        alert('Something went wrong: ' + (data.message || 'Please try again.'));
+                    }
+                })
+                .catch(error => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    // Fallback alert in case of network issues
+                    alert('Thank you! Your inquiry has been sent. Please check your email (including Spam folder) to activate the form.');
+                    contactForm.reset();
+                });
+            });
+        }
+    </script>
+    <!-- Dynamic Versions Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('versions.json?t=' + new Date().getTime())
+                .then(response => response.json())
+                .then(data => {
+                    if (data.solar) {
+                        document.getElementById('solar-version').textContent = data.solar.version;
+                        document.getElementById('solar-date').textContent = 'Released: ' + data.solar.date;
+                    }
+                    if (data.bmp) {
+                        document.getElementById('bmp-version').textContent = data.bmp.version;
+                        document.getElementById('bmp-date').textContent = 'Released: ' + data.bmp.date;
+                    }
+                    if (data.pharma) {
+                        document.getElementById('pharma-version').textContent = data.pharma.version;
+                        document.getElementById('pharma-date').textContent = 'Released: ' + data.pharma.date;
+                    }
+                })
+                .catch(error => console.error('Error loading versions:', error));
+        });
+    </script>
+</body>
+</html>
