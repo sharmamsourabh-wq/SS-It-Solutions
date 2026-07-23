@@ -18,7 +18,7 @@ git commit -m "Auto Update: Website changes saved"
 echo.
 
 echo [3/3] Pushing to GitHub...
-git push origin main
+git push -f origin main
 echo.
 
 echo ========================================
