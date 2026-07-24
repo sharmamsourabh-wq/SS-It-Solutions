@@ -401,6 +401,11 @@ namespace SolarQuotationBillingSystem.ViewModels
                     TotalSystemCost = reader["GrandTotal"] != DBNull.Value ? Convert.ToDecimal(reader["GrandTotal"]) : 0;
                     Subsidy = reader["Subsidy"] != DBNull.Value ? Convert.ToDecimal(reader["Subsidy"]) : 0;
                     NetPayable = reader["NetPayable"] != DBNull.Value ? Convert.ToDecimal(reader["NetPayable"]) : 0;
+                    TotalTaxableAmount = reader["Subtotal"] != DBNull.Value ? Convert.ToDecimal(reader["Subtotal"]) : 0;
+                    TotalCGST = reader["TotalCGST"] != DBNull.Value ? Convert.ToDecimal(reader["TotalCGST"]) : 0;
+                    TotalSGST = reader["TotalSGST"] != DBNull.Value ? Convert.ToDecimal(reader["TotalSGST"]) : 0;
+                    TotalIGST = reader["TotalIGST"] != DBNull.Value ? Convert.ToDecimal(reader["TotalIGST"]) : 0;
+                    RoundOff = reader["RoundOff"] != DBNull.Value ? Convert.ToDecimal(reader["RoundOff"]) : 0;
                     AmountInWords = reader["AmountInWords"]?.ToString() ?? "";
                 }
                 await reader.CloseAsync();
