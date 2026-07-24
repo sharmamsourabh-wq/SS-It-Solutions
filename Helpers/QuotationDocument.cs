@@ -176,7 +176,7 @@ namespace SolarQuotationBillingSystem.Helpers
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Less: Central Govt. Subsidy (PM Surya Ghar Yojana)").FontColor(Colors.Green.Darken2);
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"- ₹{_model.Subsidy:N2}").FontColor(Colors.Green.Darken2);
                     
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text("Net Payable Amount").FontColor(Colors.Orange.Darken2).Bold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text("Net Effective Cost to Customer (Approx.)").FontColor(Colors.Orange.Darken2).Bold();
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text($"₹{_model.NetPayable:N2}").FontColor(Colors.Orange.Darken2).Bold();
                 });
 
