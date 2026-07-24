@@ -162,7 +162,7 @@ namespace SolarQuotationBillingSystem.ViewModels
         private decimal _totalTaxableAmount = 0;
 
         [ObservableProperty]
-        private decimal _overallGstPercentage = 0;
+        private decimal _overallGstPercentage = 9;
         partial void OnOverallGstPercentageChanged(decimal value) => CalculateTotals();
 
         [ObservableProperty]
