@@ -1,0 +1,85 @@
+<Window x:Class="SolarQuotationBillingSystem.Views.InvoicePreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="Invoice Preview" Height="850" Width="950"
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F5F7"
+        FontFamily="Cambria">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Title Bar -->
+            <RowDefinition Height="Auto"/> <!-- Control Toolbar -->
+            <RowDefinition Height="*"/>    <!-- Preview Area -->
+        </Grid.RowDefinitions>
+
+        <!-- Modern Header -->
+        <materialDesign:ColorZone Grid.Row="0" Mode="PrimaryMid" Padding="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <materialDesign:PackIcon Kind="FileDocument" Width="28" Height="28" VerticalAlignment="Center" Foreground="White" Margin="0,0,12,0"/>
+                
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="ADISH ENTERPRISES" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="Document Preview &amp; Print System" FontSize="11" Foreground="#E3F2FD" FontWeight="SemiBold"/>
+                </StackPanel>
+
+                <Button Grid.Column="2" Click="Close_Click" Style="{StaticResource MaterialDesignIconForegroundButton}" Foreground="White" ToolTip="Close Preview">
+                    <materialDesign:PackIcon Kind="Close" Width="24" Height="24" />
+                </Button>
+            </Grid>
+        </materialDesign:ColorZone>
+
+        <!-- Control Toolbar -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="12,8">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                    <!-- Print Button -->
+                    <Button Click="Print_Click" Style="{StaticResource MaterialDesignRaisedButton}" Height="36" Padding="16,0" Margin="0,0,8,0">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Printer" Width="18" Height="18" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Print Document" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    <Separator Width="1" Margin="8,4" Background="#CCCCCC"/>
+
+                    <!-- Zoom Controls -->
+                    <Button Click="ZoomIn_Click" Style="{StaticResource MaterialDesignOutlinedButton}" Height="36" Width="36" Padding="0" Margin="8,0,4,0" ToolTip="Zoom In">
+                        <materialDesign:PackIcon Kind="Plus" Width="20" Height="20"/>
+                    </Button>
+
+                    <Button Click="ZoomOut_Click" Style="{StaticResource MaterialDesignOutlinedButton}" Height="36" Width="36" Padding="0" Margin="0,0,4,0" ToolTip="Zoom Out">
+                        <materialDesign:PackIcon Kind="Minus" Width="20" Height="20"/>
+                    </Button>
+
+                    <Button Click="FitWidth_Click" Style="{StaticResource MaterialDesignOutlinedButton}" Height="36" Padding="12,0" ToolTip="Fit Width">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ArrowExpandHorizontal" Width="18" Height="18" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Fit Width" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!-- Close Button -->
+                <Button Click="Close_Click" Style="{StaticResource MaterialDesignFlatButton}" Foreground="Red" HorizontalAlignment="Right" DockPanel.Dock="Right" Height="36">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CloseCircle" Width="18" Height="18" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="Close" VerticalAlignment="Center" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Button>
+            </DockPanel>
+        </Border>
+
+        <!-- Preview Area (WebView2 Container) -->
+        <Border Grid.Row="2" Background="#E0E0E0" Margin="8" CornerRadius="4" BorderBrush="#CCCCCC" BorderThickness="1">
+            <wv2:WebView2 Name="pdfWebView" />
+        </Border>
+    </Grid>
+</Window>

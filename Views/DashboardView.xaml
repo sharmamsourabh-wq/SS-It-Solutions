@@ -1,0 +1,49 @@
+<UserControl x:Class="SolarQuotationBillingSystem.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Background="#F0F2F5">
+    
+    <!-- This will be hosted inside a navigation shell, but for now we put it directly -->
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Dashboard" FontSize="32" FontWeight="Bold" Margin="0,0,0,24" />
+        
+        <UniformGrid Grid.Row="1" Columns="4" Rows="2" VerticalAlignment="Top">
+            <materialDesign:Card Margin="8" Padding="16" UniformCornerRadius="8" Background="White">
+                <StackPanel>
+                    <TextBlock Text="Total Customers" Foreground="Gray" FontSize="14" />
+                    <TextBlock Text="{Binding TotalCustomers}" FontSize="36" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                </StackPanel>
+            </materialDesign:Card>
+            
+            <materialDesign:Card Margin="8" Padding="16" UniformCornerRadius="8" Background="White" Cursor="Hand">
+                <materialDesign:Card.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding OpenQuotationsCommand}" />
+                </materialDesign:Card.InputBindings>
+                <StackPanel>
+                    <TextBlock Text="Total Quotations" Foreground="Gray" FontSize="14" />
+                    <TextBlock Text="{Binding TotalQuotations}" FontSize="36" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                </StackPanel>
+            </materialDesign:Card>
+            
+            <materialDesign:Card Margin="8" Padding="16" UniformCornerRadius="8" Background="White">
+                <StackPanel>
+                    <TextBlock Text="Total Bills" Foreground="Gray" FontSize="14" />
+                    <TextBlock Text="{Binding TotalBills}" FontSize="36" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                </StackPanel>
+            </materialDesign:Card>
+            
+            <materialDesign:Card Margin="8" Padding="16" UniformCornerRadius="8" Background="White">
+                <StackPanel>
+                    <TextBlock Text="Today's Sales" Foreground="Gray" FontSize="14" />
+                    <TextBlock Text="{Binding TodaySales, StringFormat=₹ {0:N2}}" FontSize="36" FontWeight="Bold" Margin="0,8,0,0" Foreground="{DynamicResource PrimaryHueMidBrush}" />
+                </StackPanel>
+            </materialDesign:Card>
+        </UniformGrid>
+    </Grid>
+</UserControl>

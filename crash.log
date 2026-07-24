@@ -1,0 +1,9 @@
+Msg: 'Provide value on 'System.Windows.Baml2006.TypeConverterMarkupExtension' threw an exception.' Line number '146' and line position '38'.
+Inner: FileInvoice is not a valid value for PackIconKind.
+Stack:    at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   at System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   at System.Windows.Application.LoadComponent(Object component, Uri resourceLocator)
+   at SolarQuotationBillingSystem.MainWindow.InitializeComponent() in C:\Users\Asus\source\repos\Solar Quotation & Billing System\MainWindow.xaml:line 1
+   at SolarQuotationBillingSystem.MainWindow..ctor() in C:\Users\Asus\source\repos\Solar Quotation & Billing System\MainWindow.xaml.cs:line 23

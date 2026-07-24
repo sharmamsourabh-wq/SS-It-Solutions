@@ -1,0 +1,85 @@
+<UserControl x:Class="SolarQuotationBillingSystem.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="14"
+             FontFamily="Cambria">
+    <Grid>
+        <!-- Background Gradient / Image Placeholder -->
+        <Border Background="{DynamicResource PrimaryHueLightBrush}" Opacity="0.1" />
+        
+        <materialDesign:Card Width="400" VerticalAlignment="Center" HorizontalAlignment="Center" materialDesign:ElevationAssist.Elevation="Dp8" UniformCornerRadius="12">
+            <StackPanel Margin="32">
+                <!-- Company Logo and Header -->
+                <Image Source="pack://application:,,,/Assets/solar_logo.jpg" Width="140" Height="140" HorizontalAlignment="Center" Margin="0,0,0,8" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <TextBlock Text="Welcome Back" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,8" FontFamily="Cambria"/>
+                <TextBlock Text="Solar Quotation &amp; Billing System" FontSize="14" Foreground="{DynamicResource MaterialDesignBodyLight}" HorizontalAlignment="Center" Margin="0,0,0,32"/>
+
+                <!-- Username -->
+                <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" 
+                         materialDesign:HintAssist.Hint="Username"
+                         materialDesign:TextFieldAssist.HasClearButton="True"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         Margin="0,0,0,16"/>
+
+                <!-- Password -->
+                <PasswordBox x:Name="txtPassword"
+                             PasswordChanged="txtPassword_PasswordChanged"
+                             materialDesign:HintAssist.Hint="Password"
+                             Style="{StaticResource MaterialDesignOutlinedRevealPasswordBox}"
+                             Margin="0,0,0,8"/>
+
+                <!-- Space instead of Remember Me -->
+                <Grid Margin="0,0,0,16" />
+
+                <!-- Error Message -->
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" HorizontalAlignment="Center" Margin="0,0,0,16" TextWrapping="Wrap">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ErrorMessage}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Login and Exit Buttons -->
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="16"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0" Content="LOGIN" Command="{Binding LoginCommand}" 
+                            IsDefault="True"
+                            Style="{StaticResource MaterialDesignRaisedButton}" 
+                            Height="45" FontSize="16" FontWeight="Bold"/>
+                            
+                    <Button Grid.Column="2" Content="ExiT" Command="{Binding ExitCommand}" 
+                            Style="{StaticResource MaterialDesignRaisedButton}" 
+                            Background="#e62e2d" BorderBrush="#e62e2d" Foreground="White"
+                            Height="45" FontSize="16" FontWeight="Bold"/>
+                </Grid>
+
+                <!-- Check Update Button -->
+                <Button Content="CHECK UPDATE" Command="{Binding CheckUpdateCommand}" 
+                        Style="{StaticResource MaterialDesignFlatButton}" 
+                        Height="40" Foreground="{DynamicResource MaterialDesignBody}"/>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

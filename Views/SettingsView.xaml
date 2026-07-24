@@ -1,0 +1,80 @@
+<UserControl x:Class="SolarQuotationBillingSystem.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             Background="#F0F2F5">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="24">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Company Settings" FontSize="28" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <materialDesign:Card Grid.Row="1" Padding="24" Margin="0,0,0,24" Background="White" UniformCornerRadius="8">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Row="0" Grid.Column="0" 
+                             materialDesign:HintAssist.Hint="Company Name" 
+                             Text="{Binding CompanyName, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+                             
+                    <TextBox Grid.Row="0" Grid.Column="2" 
+                             materialDesign:HintAssist.Hint="GST Number" 
+                             Text="{Binding GSTNumber, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="0" 
+                             materialDesign:HintAssist.Hint="Company PAN" 
+                             Text="{Binding CompanyPAN, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="1" Grid.Column="2" 
+                             materialDesign:HintAssist.Hint="State" 
+                             Text="{Binding State, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+                             
+                    <TextBox Grid.Row="2" Grid.Column="0" 
+                             materialDesign:HintAssist.Hint="State Code (e.g. 23 for MP)" 
+                             Text="{Binding StateCode, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+
+                    <TextBox Grid.Row="3" Grid.Column="0" 
+                             materialDesign:HintAssist.Hint="Quotation Prefix" 
+                             Text="{Binding QuotationPrefix, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+                             
+                    <TextBox Grid.Row="3" Grid.Column="2" 
+                             materialDesign:HintAssist.Hint="Quotation Starting No." 
+                             Text="{Binding QuotationStartingNumber, UpdateSourceTrigger=PropertyChanged}" 
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                             Margin="0,0,0,16"/>
+                </Grid>
+            </materialDesign:Card>
+
+            <Button Grid.Row="2" Content="SAVE SETTINGS" 
+                    Command="{Binding SaveSettingsCommand}" 
+                    HorizontalAlignment="Right" Width="200" Height="45"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

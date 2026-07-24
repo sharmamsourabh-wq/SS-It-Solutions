@@ -1,0 +1,42 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore "SolarQuotationBillingSystem.csproj"
+
+    - name: Publish WPF App
+      run: dotnet publish "SolarQuotationBillingSystem.csproj" -c Release -o publish
+
+    - name: Compile Inno Setup Installer
+      uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+      with:
+        path: installer.iss
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: Output/Solar_Billing_Update.exe
+        tag_name: v1.2.${{ github.run_number }}
+        name: Update v1.2.${{ github.run_number }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

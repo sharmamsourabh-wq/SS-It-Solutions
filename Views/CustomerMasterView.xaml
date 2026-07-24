@@ -1,0 +1,151 @@
+<UserControl x:Class="SolarQuotationBillingSystem.Views.CustomerMasterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024"
+             Background="{DynamicResource MaterialDesignPaper}"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    
+    <materialDesign:DialogHost>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <materialDesign:Card Grid.Row="0" Margin="16,16,16,8" Padding="16">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="AccountMultiple" Width="32" Height="32" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryHueMidBrush}"/>
+                    <TextBlock Text="Customer Master" FontSize="24" FontWeight="Bold" Margin="16,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </materialDesign:Card>
+
+            <!-- Main Content: Form & Grid -->
+            <Grid Grid.Row="1" Margin="16,8,16,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Input Form -->
+                <materialDesign:Card Grid.Column="0" Margin="0,0,8,0" Padding="16">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel>
+                            <TextBlock Text="Customer Details" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                            
+                            <TextBox materialDesign:HintAssist.Hint="Customer Name *" 
+                                     Text="{Binding CurrentCustomer.CustomerName, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+                            
+                            <TextBox materialDesign:HintAssist.Hint="Company Name" 
+                                     Text="{Binding CurrentCustomer.CompanyName, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+                                     
+                            <TextBox materialDesign:HintAssist.Hint="Mobile *" 
+                                     Text="{Binding CurrentCustomer.Mobile, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+                                     
+                            <TextBox materialDesign:HintAssist.Hint="Email" 
+                                     Text="{Binding CurrentCustomer.Email, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+                                     
+                            <TextBox materialDesign:HintAssist.Hint="GST Number" 
+                                     Text="{Binding CurrentCustomer.GSTNumber, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+
+                            <TextBox materialDesign:HintAssist.Hint="City" 
+                                     Text="{Binding CurrentCustomer.City, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+
+                            <TextBox materialDesign:HintAssist.Hint="State" 
+                                     Text="{Binding CurrentCustomer.State, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,16"/>
+
+                            <TextBox materialDesign:HintAssist.Hint="State Code (e.g. 23)" 
+                                     Text="{Binding CurrentCustomer.StateCode, UpdateSourceTrigger=PropertyChanged}" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,0,0,24"/>
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Content="DELETE" Command="{Binding DeleteCommand}" CommandParameter="{Binding CurrentCustomer}" 
+                                        Style="{StaticResource MaterialDesignOutlinedButton}" Foreground="Red" BorderBrush="Red" Margin="0,0,8,0">
+                                    <Button.Visibility>
+                                        <Binding Path="IsEditing" Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                                    </Button.Visibility>
+                                </Button>
+                                <Button Content="CLEAR" Command="{Binding ClearCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Margin="0,0,8,0"/>
+                                <Button Command="{Binding SaveCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                            <Setter Property="Content" Value="SAVE"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsEditing}" Value="True">
+                                                    <Setter Property="Content" Value="UPDATE"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </materialDesign:Card>
+
+                <!-- DataGrid -->
+                <materialDesign:Card Grid.Column="1" Margin="8,0,0,0" Padding="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Text="Customer List" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,16"/>
+                        
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding CustomerList}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True"
+                                  materialDesign:DataGridAssist.CellPadding="13 8 8 8" materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding CustomerID}"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding CustomerName}"/>
+                                <DataGridTextColumn Header="Mobile" Binding="{Binding Mobile}"/>
+                                <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                                <DataGridTemplateColumn Header="Actions">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" 
+                                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        CommandParameter="{Binding}" ToolTip="Edit Customer">
+                                                    <materialDesign:PackIcon Kind="Pencil" />
+                                                </Button>
+                                                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" 
+                                                        Command="{Binding DataContext.CreateQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        CommandParameter="{Binding}" ToolTip="Create Quotation" Foreground="{DynamicResource PrimaryHueMidBrush}">
+                                                    <materialDesign:PackIcon Kind="FileDocument" />
+                                                </Button>
+                                                <Button Style="{StaticResource MaterialDesignIconForegroundButton}" 
+                                                        Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" 
+                                                        CommandParameter="{Binding}" ToolTip="Delete Customer" Foreground="Red">
+                                                    <materialDesign:PackIcon Kind="TrashCan" />
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </materialDesign:Card>
+            </Grid>
+
+            <!-- Professional Snackbar for ERP workflow -->
+            <materialDesign:Snackbar Grid.Row="1" MessageQueue="{Binding MessageQueue}" 
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>
