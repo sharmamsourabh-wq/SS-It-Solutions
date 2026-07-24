@@ -1,27 +1,18 @@
 @echo off
-color 0A
-title Auto Push to GitHub
-echo ========================================
-echo        SS IT SOLUTIONS AUTO PUSH
-echo ========================================
+echo ===================================================
+echo Auto Push Website Updates to GitHub
+echo ===================================================
 echo.
-
-:: Set the correct path for Git
-set PATH=%PATH%;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\Git\cmd
-
-echo [1/3] Adding all files to Git...
+echo Adding changes to git...
 git add .
 echo.
-
-echo [2/3] Committing changes...
-git commit -m "Auto Update: Website changes saved"
+echo Committing changes...
+git commit -m "Auto-update: New version of Solar ERP software added"
 echo.
-
-echo [3/3] Pushing to GitHub...
-git push -f origin main
+echo Pushing to GitHub...
+git push origin main
 echo.
-
-echo ========================================
-echo        PUSH COMPLETED!
-echo ========================================
+echo ===================================================
+echo Process Completed! Check the output above for any errors.
+echo ===================================================
 pause
