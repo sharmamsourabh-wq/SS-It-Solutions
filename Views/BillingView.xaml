@@ -26,6 +26,23 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <!-- Edit Quotation -->
+                                    <Button Content="Edit" 
+                                            Command="{Binding DataContext.EditQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                            CommandParameter="{Binding}"
+                                            Height="30" FontSize="11" Cursor="Hand" Margin="2,0" Background="#FFA000" BorderBrush="#FFA000">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Status}" Value="Paid">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
                                     <!-- Print Quotation -->
                                     <Button Content="Print Quotation" 
                                             Command="{Binding DataContext.PrintQuotationCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"

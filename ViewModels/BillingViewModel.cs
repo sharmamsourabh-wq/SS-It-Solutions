@@ -78,6 +78,20 @@ namespace SolarQuotationBillingSystem.ViewModels
         }
 
         [RelayCommand]
+        private void EditQuotation(QuotationListModel selectedQuotation)
+        {
+            if (selectedQuotation == null || _mainViewModel == null) return;
+            
+            if (selectedQuotation.Status != "Pending")
+            {
+                MessageBox.Show("Only pending quotations can be edited.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            _mainViewModel.NavigateTo(new QuotationViewModel(selectedQuotation.QuotationID, true));
+        }
+
+        [RelayCommand]
         private void CreateFinalBill(QuotationListModel selectedQuotation)
         {
             if (selectedQuotation == null || _mainViewModel == null) return;

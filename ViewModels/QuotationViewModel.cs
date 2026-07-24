@@ -15,6 +15,8 @@ namespace SolarQuotationBillingSystem.ViewModels
 {
     public partial class QuotationViewModel : ObservableObject
     {
+        private int? _editingQuotationId = null;
+
         // -----------------------------------------------------------
         // CUSTOMER DETAILS
         // -----------------------------------------------------------
@@ -303,6 +305,15 @@ namespace SolarQuotationBillingSystem.ViewModels
         public QuotationViewModel(int customerId) : this()
         {
             LoadCustomerData(customerId);
+        }
+
+        public QuotationViewModel(int quotationId, bool isEditMode) : this()
+        {
+            if (isEditMode)
+            {
+                _editingQuotationId = quotationId;
+                LoadQuotationDataAsync(quotationId);
+            }
         }
 
         private void LoadCustomerData(int customerId)
@@ -626,24 +637,56 @@ namespace SolarQuotationBillingSystem.ViewModels
                 }
                 int customerId = Convert.ToInt32(cidObj);
 
-                var cmd = new SqlCommand(@"
-                    INSERT INTO Quotation (
-                        QuotationNo, QuotationDate, ValidUntil, CustomerID, SalesExecutive, Reference, InstallationType,
-                        RoofType, SubsidyEligible, SystemCapacityKW, SolarPanelBrand, PanelWatt, NoOfPanels, InverterBrand,
-                        InverterCapacity, Battery, MountingStructure, EarthingKit, LightningArrestor, MC4Connector,
-                        DCCable, ACCable, InstallationCharges, Transportation, OtherCharges, Subtotal, TotalGST,
-                        TotalCGST, TotalSGST, TotalIGST, RoundOff,
-                        Subsidy, Discount, GrandTotal, NetPayable, AmountInWords
-                    ) VALUES (
-                        @QuotationNo, @QuotationDate, @ValidUntil, @CustomerID, @SalesExecutive, @Reference, @InstallationType,
-                        @RoofType, @SubsidyEligible, @SystemCapacityKW, @SolarPanelBrand, @PanelWatt, @NoOfPanels, @InverterBrand,
-                        @InverterCapacity, @Battery, @MountingStructure, @EarthingKit, @LightningArrestor, @MC4Connector,
-                        @DCCable, @ACCable, @InstallationCharges, @Transportation, @OtherCharges, @Subtotal, @TotalGST,
-                        @TotalCGST, @TotalSGST, @TotalIGST, @RoundOff,
-                        @Subsidy, @Discount, @GrandTotal, @NetPayable, @AmountInWords
-                    );
-                    SELECT SCOPE_IDENTITY();
-                ", conn);
+                int newQuotationId = 0;
+                
+                if (_editingQuotationId.HasValue)
+                {
+                    var cmdUpdate = new SqlCommand(@"
+                        UPDATE Quotation SET
+                            QuotationDate = @QuotationDate, ValidUntil = @ValidUntil, CustomerID = @CustomerID, SalesExecutive = @SalesExecutive,
+                            Reference = @Reference, InstallationType = @InstallationType, RoofType = @RoofType, SubsidyEligible = @SubsidyEligible,
+                            SystemCapacityKW = @SystemCapacityKW, SolarPanelBrand = @SolarPanelBrand, PanelWatt = @PanelWatt, NoOfPanels = @NoOfPanels,
+                            InverterBrand = @InverterBrand, InverterCapacity = @InverterCapacity, Battery = @Battery, MountingStructure = @MountingStructure,
+                            EarthingKit = @EarthingKit, LightningArrestor = @LightningArrestor, MC4Connector = @MC4Connector, DCCable = @DCCable,
+                            ACCable = @ACCable, InstallationCharges = @InstallationCharges, Transportation = @Transportation, OtherCharges = @OtherCharges,
+                            Subtotal = @Subtotal, TotalGST = @TotalGST, TotalCGST = @TotalCGST, TotalSGST = @TotalSGST, TotalIGST = @TotalIGST, RoundOff = @RoundOff,
+                            Subsidy = @Subsidy, Discount = @Discount, GrandTotal = @GrandTotal, NetPayable = @NetPayable, AmountInWords = @AmountInWords
+                        WHERE QuotationID = @QuotationID
+                    ", conn);
+                    
+                    cmdUpdate.Parameters.AddWithValue("@QuotationID", _editingQuotationId.Value);
+                    // Add parameters (shared below)
+                    cmd = cmdUpdate;
+                    
+                    // Delete old items
+                    var cmdDeleteItems = new SqlCommand("DELETE FROM QuotationItems WHERE QuotationID = @QuotationID", conn);
+                    cmdDeleteItems.Parameters.AddWithValue("@QuotationID", _editingQuotationId.Value);
+                    await cmdDeleteItems.ExecuteNonQueryAsync();
+                    
+                    newQuotationId = _editingQuotationId.Value;
+                }
+                else
+                {
+                    cmd = new SqlCommand(@"
+                        INSERT INTO Quotation (
+                            QuotationNo, QuotationDate, ValidUntil, CustomerID, SalesExecutive, Reference, InstallationType,
+                            RoofType, SubsidyEligible, SystemCapacityKW, SolarPanelBrand, PanelWatt, NoOfPanels, InverterBrand,
+                            InverterCapacity, Battery, MountingStructure, EarthingKit, LightningArrestor, MC4Connector,
+                            DCCable, ACCable, InstallationCharges, Transportation, OtherCharges, Subtotal, TotalGST,
+                            TotalCGST, TotalSGST, TotalIGST, RoundOff,
+                            Subsidy, Discount, GrandTotal, NetPayable, AmountInWords
+                        ) VALUES (
+                            @QuotationNo, @QuotationDate, @ValidUntil, @CustomerID, @SalesExecutive, @Reference, @InstallationType,
+                            @RoofType, @SubsidyEligible, @SystemCapacityKW, @SolarPanelBrand, @PanelWatt, @NoOfPanels, @InverterBrand,
+                            @InverterCapacity, @Battery, @MountingStructure, @EarthingKit, @LightningArrestor, @MC4Connector,
+                            @DCCable, @ACCable, @InstallationCharges, @Transportation, @OtherCharges, @Subtotal, @TotalGST,
+                            @TotalCGST, @TotalSGST, @TotalIGST, @RoundOff,
+                            @Subsidy, @Discount, @GrandTotal, @NetPayable, @AmountInWords
+                        );
+                        SELECT SCOPE_IDENTITY();
+                    ", conn);
+                }
+
 
                 cmd.Parameters.AddWithValue("@QuotationNo", QuotationNo);
                 cmd.Parameters.AddWithValue("@QuotationDate", QuotationDate);
@@ -682,8 +725,15 @@ namespace SolarQuotationBillingSystem.ViewModels
                 cmd.Parameters.AddWithValue("@NetPayable", NetPayable);
                 cmd.Parameters.AddWithValue("@AmountInWords", AmountInWords ?? string.Empty);
 
-                var result = await cmd.ExecuteScalarAsync();
-                int newQuotationId = Convert.ToInt32(result);
+                if (!_editingQuotationId.HasValue)
+                {
+                    var result = await cmd.ExecuteScalarAsync();
+                    newQuotationId = Convert.ToInt32(result);
+                }
+                else
+                {
+                    await cmd.ExecuteNonQueryAsync();
+                }
 
                 // Save all QuotationItems to database
                 foreach (var item in QuotationItems)
