@@ -165,14 +165,14 @@ namespace SolarQuotationBillingSystem.Helpers
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Total SGST");
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"₹{_model.TotalSGST:N2}");
 
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Total System Cost").SemiBold();
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"₹{_model.TotalSystemCost:N2}").SemiBold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text("Net Payable Amount (To Company)").FontColor(Colors.Blue.Darken2).Bold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text($"₹{_model.TotalSystemCost:N2}").FontColor(Colors.Blue.Darken2).Bold();
 
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Less: Govt. Subsidy").FontColor(Colors.Green.Darken2);
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Expected Govt. Subsidy (To Customer Bank A/c)").FontColor(Colors.Green.Darken2);
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"- ₹{_model.Subsidy:N2}").FontColor(Colors.Green.Darken2);
                     
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text("Net Payable Amount").FontColor(Colors.Blue.Darken2).Bold();
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text($"₹{_model.NetPayable:N2}").FontColor(Colors.Blue.Darken2).Bold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text("Net Effective Cost to Customer (Approx.)").FontColor(Colors.Orange.Darken2).Bold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text($"₹{_model.NetPayable:N2}").FontColor(Colors.Orange.Darken2).Bold();
                 });
 
                 string payRefInfo = !string.IsNullOrWhiteSpace(_model.PaymentRefNo) ? $" ({_model.GetPaymentRefHeader()}: {_model.PaymentRefNo})" : "";
@@ -186,7 +186,7 @@ namespace SolarQuotationBillingSystem.Helpers
                     row.RelativeItem().AlignRight().Text(t =>
                     {
                         t.Span("Total Amount: ").Bold();
-                        t.Span($"₹{_model.NetPayable:N2}").Bold().FontColor(Colors.Blue.Darken2);
+                        t.Span($"₹{_model.TotalSystemCost:N2}").Bold().FontColor(Colors.Blue.Darken2);
                     });
                 });
                 
