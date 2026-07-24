@@ -19,6 +19,9 @@
       <Style TargetType="{x:Type Control}">
           <Setter Property="FontFamily" Value="Cambria" />
       </Style>
+      <Style TargetType="{x:Type materialDesign:Ripple}">
+          <Setter Property="Feedback" Value="Transparent" />
+      </Style>
     </ResourceDictionary>
   </Application.Resources>
 </Application>
