@@ -165,11 +165,11 @@ namespace SolarQuotationBillingSystem.Helpers
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Total SGST");
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"₹{_model.TotalSGST:N2}");
 
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Total System Cost").SemiBold();
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"₹{_model.TotalSystemCost:N2}").SemiBold();
 
-
-
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Add: Govt. Subsidy").FontColor(Colors.Green.Darken2);
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"+ ₹{_model.Subsidy:N2}").FontColor(Colors.Green.Darken2);
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Less: Govt. Subsidy").FontColor(Colors.Green.Darken2);
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"- ₹{_model.Subsidy:N2}").FontColor(Colors.Green.Darken2);
                     
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text("Net Payable Amount").FontColor(Colors.Blue.Darken2).Bold();
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text($"₹{_model.NetPayable:N2}").FontColor(Colors.Blue.Darken2).Bold();
