@@ -212,13 +212,27 @@
 
                 <!-- Action Buttons (Right) -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Bottom">
-                    <Button Content="Generate Quotation" Command="{Binding GenerateQuotationCommand}" 
+                    <Button Content="{Binding SaveButtonText}" Command="{Binding GenerateQuotationCommand}" 
                             Background="#388E3C" BorderBrush="#388E3C" Foreground="White"
                             FontSize="16" FontWeight="Bold" Height="50" Padding="20,0" Margin="0,0,15,0"/>
                     
                     <Button Content="Print Quotation" Command="{Binding ExportPdfCommand}" 
                             Background="#1976D2" BorderBrush="#1976D2" Foreground="White"
                             FontSize="16" FontWeight="Bold" Height="50" Padding="20,0"/>
+
+                    <Button Content="Close" Command="{Binding CloseCommand}" 
+                            Background="#9E9E9E" BorderBrush="#9E9E9E" Foreground="White"
+                            FontSize="16" FontWeight="Bold" Height="50" Padding="20,0" Margin="15,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SaveButtonText}" Value="Generate Quotation">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Grid>

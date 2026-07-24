@@ -88,7 +88,10 @@ namespace SolarQuotationBillingSystem.ViewModels
                 return;
             }
 
-            _mainViewModel.NavigateTo(new QuotationViewModel(selectedQuotation.QuotationID, true));
+            _mainViewModel.NavigateTo(new QuotationViewModel(selectedQuotation.QuotationID, true, () => 
+            {
+                _mainViewModel.NavigateTo(new QuotationBillingModuleViewModel(_mainViewModel));
+            }));
         }
 
         [RelayCommand]

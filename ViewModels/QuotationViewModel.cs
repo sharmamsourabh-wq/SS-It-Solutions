@@ -66,6 +66,11 @@ namespace SolarQuotationBillingSystem.ViewModels
         // QUOTATION DETAILS & SOLAR SPECS
         // -----------------------------------------------------------
         [ObservableProperty]
+        private string saveButtonText = "Generate Quotation";
+        
+        private Action _onClose;
+
+        [ObservableProperty]
         private string quotationNo = string.Empty;
 
         [ObservableProperty]
@@ -307,13 +312,21 @@ namespace SolarQuotationBillingSystem.ViewModels
             LoadCustomerData(customerId);
         }
 
-        public QuotationViewModel(int quotationId, bool isEditMode) : this()
+        public QuotationViewModel(int quotationId, bool isEditMode, Action onClose = null) : this()
         {
+            _onClose = onClose;
             if (isEditMode)
             {
+                SaveButtonText = "Update Quotation";
                 _editingQuotationId = quotationId;
                 LoadQuotationDataAsync(quotationId);
             }
+        }
+
+        [RelayCommand]
+        private void Close()
+        {
+            _onClose?.Invoke();
         }
 
         private void LoadCustomerData(int customerId)
@@ -760,7 +773,14 @@ namespace SolarQuotationBillingSystem.ViewModels
                     await itemCmd.ExecuteNonQueryAsync();
                 }
 
-                MessageBox.Show($"Quotation {QuotationNo} generated and fully saved to the database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (_editingQuotationId.HasValue)
+                {
+                    MessageBox.Show($"Quotation {QuotationNo} has been successfully updated!", "Updated", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Quotation {QuotationNo} generated and fully saved to the database!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             catch (Exception ex)
             {
