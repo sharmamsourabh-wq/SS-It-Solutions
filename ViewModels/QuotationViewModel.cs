@@ -457,10 +457,10 @@ namespace SolarQuotationBillingSystem.ViewModels
                 }
                 
                 // Reverse calculate overall GST % based on loaded totals to restore UI state
-                if (TotalTaxableAmount > 0)
+                if (NetPayable > 0)
                 {
                     decimal totalTax = TotalCGST + TotalSGST + TotalIGST;
-                    OverallGstPercentage = Math.Round((totalTax / TotalTaxableAmount) * 100);
+                    OverallGstPercentage = Math.Round((totalTax / NetPayable) * 100);
                 }
                 else
                 {
