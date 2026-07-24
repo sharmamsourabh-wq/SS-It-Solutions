@@ -638,6 +638,7 @@ namespace SolarQuotationBillingSystem.ViewModels
                 int customerId = Convert.ToInt32(cidObj);
 
                 int newQuotationId = 0;
+                SqlCommand cmd;
                 
                 if (_editingQuotationId.HasValue)
                 {
