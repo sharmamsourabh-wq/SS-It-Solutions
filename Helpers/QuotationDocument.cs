@@ -170,10 +170,7 @@ namespace SolarQuotationBillingSystem.Helpers
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Total SGST");
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"₹{_model.TotalSGST:N2}");
 
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text("Net Payable Amount (To Company)").FontColor(Colors.Blue.Darken2).Bold();
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Blue.Lighten5).Padding(10).AlignRight().Text($"₹{_model.TotalSystemCost:N2}").FontColor(Colors.Blue.Darken2).Bold();
-
-                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Expected Govt. Subsidy (To Customer Bank A/c)").FontColor(Colors.Green.Darken2);
+                    table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text("Less: Central Govt. Subsidy (PM Surya Ghar Yojana)").FontColor(Colors.Green.Darken2);
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Padding(10).AlignRight().Text($"- ₹{_model.Subsidy:N2}").FontColor(Colors.Green.Darken2);
                     
                     table.Cell().Border(1).BorderColor(Colors.Grey.Lighten3).Background(Colors.Orange.Lighten5).Padding(10).AlignRight().Text("Net Effective Cost to Customer (Approx.)").FontColor(Colors.Orange.Darken2).Bold();
